@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A focused local AI text summarizer powered by Qwen 3.">
+  <title>Briefly | Local AI Summarizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Briefly home">
+        <span class="brand-mark">B</span>
+        <span>briefly<span class="brand-dot">.</span></span>
+      </a>
+      <div class="status-pill"><span class="status-dot"></span> Local & private</div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <p class="eyebrow">QWEN 3 / TEXT INTELLIGENCE</p>
+        <h1>Turn long reads into<br><em>clear thinking.</em></h1>
+        <p class="lede">Drop in an article, meeting notes, or research. Your local Qwen model will find the signal and leave the noise behind.</p>
+      </section>
+
+      <section class="workspace" aria-label="Summarizer workspace">
+        <div class="panel input-panel">
+          <div class="panel-header">
+            <div>
+              <span class="panel-index">01</span>
+              <h2>Your text</h2>
+            </div>
+            <button class="text-button" id="clear-button" type="button">Clear</button>
+          </div>
+          <textarea id="source-text" maxlength="20000" placeholder="Paste your text here..." aria-label="Text to summarize"></textarea>
+          <div class="panel-footer">
+            <span id="word-count">0 words</span>
+            <span>80 min characters</span>
+          </div>
+        </div>
+
+        <div class="flow-arrow" aria-hidden="true">+</div>
+
+        <div class="panel output-panel">
+          <div class="panel-header">
+            <div>
+              <span class="panel-index">02</span>
+              <h2>Summary</h2>
+            </div>
+            <button class="icon-button" id="copy-button" type="button" title="Copy summary" aria-label="Copy summary">&#10697;</button>
+          </div>
+          <div class="summary-output" id="summary-output">
+            <div class="empty-state">
+              <span class="empty-icon">&#8599;</span>
+              <p>Your summary will appear here.</p>
+              <small>Everything runs on your machine.</small>
+            </div>
+          </div>
+          <div class="panel-footer output-footer"><span id="result-meta">Ready when you are</span><span id="model-label">Qwen 3</span></div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <div class="style-control">
+          <label for="style-select">Summary style</label>
+          <select id="style-select">
+            <option value="concise">Concise</option>
+            <option value="balanced" selected>Balanced</option>
+            <option value="detailed">Detailed</option>
+          </select>
+        </div>
+        <button class="primary-button" id="summarize-button" type="button">
+          <span>Summarize text</span><span class="button-arrow">&#8594;</span>
+        </button>
+      </section>
+      <p class="error-message" id="error-message" role="alert"></p>
+    </main>
+
+    <footer class="site-footer"><span>BRIEFLY / 2026</span><span>Powered by a local Qwen 3 model</span></footer>
+  </div>
+  <script src="{% static 'app.js' %}"></script>
+</body>
+</html>
